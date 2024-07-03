@@ -16,7 +16,25 @@ export const styles = StyleSheet.create({
   filter: {
     flexDirection: 'row',
     gap: 6,
-    marginBottom: 16
+    marginBottom: 22
+  },
+
+  onPressedFilter: {
+    textAlign: 'center',
+
+    fontFamily: THEME.FONTS.ROBOTO_BOLD,
+    fontSize: 10,
+
+    color: THEME.COLORS.WHITE,
+
+    backgroundColor: THEME.COLORS.PURPLE,
+
+    borderColor: THEME.COLORS.PURPLE,
+    borderWidth: 1,
+    borderRadius: 100,
+
+    paddingVertical: 6,
+    paddingHorizontal: 8
   },
 
   tag: {

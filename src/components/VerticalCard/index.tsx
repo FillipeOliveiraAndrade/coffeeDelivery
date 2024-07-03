@@ -72,9 +72,10 @@ export function VerticalCard({ title, description, price, type, ...rest }: Props
           {description}
         </Text>
 
-        <Text style={styles.price}>
-          R$ {price.toFixed(2)}
-        </Text>
+          <View style={styles.price}>
+            <Text style={styles.currency}> R$ </Text>
+            <Text style={styles.amount}> {price.toFixed(2)} </Text>
+          </View>
       </View>
     </Pressable>
   )

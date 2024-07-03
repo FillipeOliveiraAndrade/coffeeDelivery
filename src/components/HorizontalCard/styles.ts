@@ -22,7 +22,9 @@ export const styles = StyleSheet.create({
 
   image: {
     top: -26,
-    left: 8
+    left: 8,
+    width: 100,
+    height: 101
   },
 
   title: {

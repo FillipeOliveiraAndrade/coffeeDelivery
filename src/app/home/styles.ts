@@ -11,11 +11,12 @@ export const styles = StyleSheet.create({
     backgroundColor: THEME.COLORS.GREY_100,
 
     paddingTop: 48,
-    paddingHorizontal: 32,
+    paddingHorizontal: 32
   },
 
   catalog: {
     paddingHorizontal: 32,
+    paddingBottom: 60,
   },
 
   image: {

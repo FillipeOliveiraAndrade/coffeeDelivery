@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     maxWidth: '85%'
   },
 
-  pressable: {
+  input: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 9.5,
@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
     padding: 12
   },
 
-  textPressable: {
+  textInput: {
     color: THEME.COLORS.GREY_400
   }
 });

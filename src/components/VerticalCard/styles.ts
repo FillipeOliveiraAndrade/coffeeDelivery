@@ -4,25 +4,27 @@ import { THEME } from "src/styles/theme";
 
 export const styles = StyleSheet.create({
   container: {
+    justifyContent: 'center',
     alignItems: 'center',
 
-    backgroundColor: THEME.COLORS.GREY_700,
-
     borderTopLeftRadius: 8,
-    borderTopRightRadius: 30,
+    borderTopRightRadius: 34,
     borderBottomRightRadius: 8,
-    borderBottomLeftRadius: 30,
+    borderBottomLeftRadius: 34,
 
-    marginLeft: 32,
-
-    bottom: 68,
-
+    backgroundColor: THEME.COLORS.GREY_700,
+    height: 262,
     width: 208,
-    height: 262
+
+    marginHorizontal: 32,
+    paddingHorizontal: 10
   },
 
   image: {
-    top: -28
+    top: -8,
+
+    width: 100,
+    height: 101
   },
 
   tag: {
@@ -36,13 +38,15 @@ export const styles = StyleSheet.create({
 
     borderRadius: 100,
 
-    top: -20,
+    width: 81,
 
     paddingVertical: 6,
-    paddingHorizontal: 10
+    marginBottom: 14
   },
 
   title: {
+    textAlign: 'center',
+
     fontFamily: THEME.FONTS.BALOO2_BOLD,
     fontSize: 20,
 
@@ -64,11 +68,22 @@ export const styles = StyleSheet.create({
   },
 
   price: {
-    fontFamily: THEME.FONTS.BALOO2_BOLD,
-    fontSize: 20,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
 
-    left: 54,
+  currency: {
+    fontFamily: THEME.FONTS.ROBOTO_REGULAR,
+    fontSize: 14,
 
     color: THEME.COLORS.YELLOW_DARK
-  }
+  },
+
+  amount: {
+    fontFamily: THEME.FONTS.BALOO2_BOLD,
+    fontSize: 24,
+
+    color: THEME.COLORS.YELLOW_DARK
+  },
 });
