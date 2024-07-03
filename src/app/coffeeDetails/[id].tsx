@@ -70,7 +70,9 @@ export default function CoffeeDetails() {
         </Text>
       </View>
 
-      <Smoke />
+      <View style={styles.imageContent}>
+        <Smoke />
+      </View>
 
       <View style={styles.footer}>
         <Text style={styles.text}>

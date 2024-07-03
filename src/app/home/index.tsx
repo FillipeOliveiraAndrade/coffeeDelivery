@@ -49,12 +49,9 @@ export default function Home() {
         <Carousel data={coffeeSugestions} />
       </Animated.View>
 
-      <Animated.View
-        entering={SlideInDown.duration(1500).delay(1000)}
-        style={styles.catalog}
-      >
+      <View style={styles.catalog}>
         <Catalog scrollViewRef={scrollViewRef} />
-      </Animated.View>
+      </View>
     </AnimatedScrollView>
   )
 }

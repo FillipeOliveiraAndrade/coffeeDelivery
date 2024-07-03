@@ -1,10 +1,13 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 
 import { THEME } from "src/styles/theme";
+
+const { height, width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   intro: {
     flex: 1,
+    position: 'relative',
 
     backgroundColor: THEME.COLORS.GREY_100,
 
@@ -59,14 +62,18 @@ export const styles = StyleSheet.create({
 
   description: {
     fontFamily: THEME.FONTS.ROBOTO_REGULAR,
-    fontSize: 16,
+    fontSize: 18,
 
     color: THEME.COLORS.GREY_500
   },
 
-  image: {
+  imageContent: {
     position: 'absolute',
-    zIndex: 10
+    zIndex: 1,
+
+    top: height * 0.42,
+    marginLeft: width / 2,
+    marginRight: width / 2
   },
 
   footer: {
