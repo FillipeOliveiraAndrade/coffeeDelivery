@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
-import { Image, Pressable, ScrollView, Text, View } from 'react-native'
-import Animated from 'react-native-reanimated';
+import { Pressable, Text, View } from 'react-native'
 import { Plus, Minus } from 'phosphor-react-native';
 
 import { Header } from '@components/Header'
@@ -12,8 +11,6 @@ import { coffees } from 'src/data/coffee';
 import { styles } from './styles'
 import { THEME } from 'src/styles/theme'
 import { Smoke } from '@components/Smoke';
-
-const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
 
 export default function CoffeeDetails() {
   const { handleSaveCoffee } = useApp();
@@ -45,7 +42,7 @@ export default function CoffeeDetails() {
   }
 
   return (
-    <AnimatedScrollView showsVerticalScrollIndicator={false}>
+    <View style={{ flex: 1 }}>
       <View style={styles.intro}>
         <Header
           icon='ArrowLeft'
@@ -113,7 +110,6 @@ export default function CoffeeDetails() {
               227ml
             </Text>
           </Pressable>
-
         </View>
 
         <View style={styles.addToCart}>
@@ -141,6 +137,6 @@ export default function CoffeeDetails() {
           </Pressable>
         </View>
       </View>
-    </AnimatedScrollView>
+    </View>
   )
 }

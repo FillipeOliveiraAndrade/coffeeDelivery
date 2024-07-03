@@ -4,12 +4,12 @@ import { THEME } from "src/styles/theme";
 
 export const styles = StyleSheet.create({
   intro: {
+    flex: 1,
+
     backgroundColor: THEME.COLORS.GREY_100,
 
     paddingTop: 48,
-    paddingVertical: '87%',
     paddingHorizontal: 32,
-    position: 'relative'
   },
 
   tag: {
@@ -66,10 +66,7 @@ export const styles = StyleSheet.create({
 
   image: {
     position: 'absolute',
-    zIndex: 10,
-
-    top: '46%',
-    left: '8%',
+    zIndex: 10
   },
 
   footer: {

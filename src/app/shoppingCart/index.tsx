@@ -11,7 +11,7 @@ import ListEmpty from '@components/ListEmpty'
 import { styles } from './styles'
 import { THEME } from 'src/styles/theme'
 import { Swipeable } from 'react-native-gesture-handler'
-import Animated, { FadeIn, FadeInDown, SlideInDown, SlideInRight } from 'react-native-reanimated'
+import Animated, { FadeIn, FadeInDown, SlideInRight } from 'react-native-reanimated'
 
 export default function ShoppingCart() {
   const {

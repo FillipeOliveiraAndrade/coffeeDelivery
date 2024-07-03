@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import Animated, { SlideInRight, SlideInUp  } from 'react-native-reanimated';
+import Animated, { SlideInDown, SlideInRight, SlideInUp  } from 'react-native-reanimated';
 
 import { Header } from '@components/Header';
 import { Search } from '@components/Search';
@@ -49,9 +49,12 @@ export default function Home() {
         <Carousel data={coffeeSugestions} />
       </Animated.View>
 
-      <View style={styles.catalog}>
+      <Animated.View
+        entering={SlideInDown.duration(1500).delay(1000)}
+        style={styles.catalog}
+      >
         <Catalog scrollViewRef={scrollViewRef} />
-      </View>
+      </Animated.View>
     </AnimatedScrollView>
   )
 }

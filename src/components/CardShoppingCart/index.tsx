@@ -1,6 +1,5 @@
 import { Pressable, Text, View } from "react-native";
-import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import Animated, { useAnimatedStyle, useSharedValue } from "react-native-reanimated";
 import { Minus, Plus, Trash } from "phosphor-react-native";
 
 import { styles } from "./styles";
@@ -11,7 +10,7 @@ import { useApp } from "@hooks/useApp";
 import { coffeesImage } from '../../data/coffee'; 
 
 import { CoffeeDTO } from "src/dtos/CoffeeDTO";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Props = {
   coffee: CoffeeDTO;
@@ -60,10 +59,11 @@ function showImageCoffee(title: string) {
   }
 }
 
-const CARD_DELETE_AREA = 180;
-
 export default function CardShoppingCart({ coffee }: Props) {
-  const { handleRemoveCoffeeOfTheCart } = useApp();
+  const {
+    handleUpdatedCoffeeOfTheCart,
+    handleRemoveCoffeeOfTheCart
+  } = useApp();
 
   const cardPosition = useSharedValue(0);
 
@@ -71,7 +71,10 @@ export default function CardShoppingCart({ coffee }: Props) {
 
   function handleDecreaseQuantity() {
     const verifyQuantity = (quantity === 1);
-    verifyQuantity ? 1 : setQuantity(prevsStates => prevsStates -= 1);
+    if (verifyQuantity) return 1
+    
+    setQuantity(prevsStates => prevsStates -= 1);
+    handleUpdatedCoffeeOfTheCart(coffee.id, coffee.quantity - 1);
   }
 
   const dragStyles = useAnimatedStyle(() => {
@@ -81,60 +84,40 @@ export default function CardShoppingCart({ coffee }: Props) {
       }]
     };
   });
-
-  // const onPan = Gesture
-  //   .Pan()
-  //   .activateAfterLongPress(150)
-  //   .onUpdate((event) => {
-  //     const moveToRight = event.translationX > 0;
-
-  //     (event.translationX);
-      
-
-  //     if (moveToRight) {
-  //       cardPosition.value = event.translationX;
-  //     }
-  //   })
-  //   .onEnd((event) => {
-  //     if (event.translationX >= 180) {
-  //       runOnJS(handleRemoveCoffeeOfTheCart)(coffee.id);
-  //     }
-
-  //     cardPosition.value = withTiming(0);
-  //   });
-
+  
   return (
-    // <GestureDetector gesture={onPan}>
-      <Animated.View style={[styles.container, dragStyles]}>
-        { showImageCoffee(coffee.name) }
+    <Animated.View style={[styles.container, dragStyles]}>
+      { showImageCoffee(coffee.name) }
 
-        <View>
-          <Text style={styles.name}> { coffee.name } </Text>
-          <Text style={styles.size}> { coffee.size } </Text>
+      <View>
+        <Text style={styles.name}> { coffee.name } </Text>
+        <Text style={styles.size}> { coffee.size } </Text>
 
-          <View style={styles.actions}>
-            <View style={styles.quantity}>
-              <Pressable onPress={handleDecreaseQuantity}>
-                <Minus size={18} weight='bold' color={ THEME.COLORS.PURPLE } />
-              </Pressable>
+        <View style={styles.actions}>
+          <View style={styles.quantity}>
+            <Pressable onPress={handleDecreaseQuantity}>
+              <Minus size={18} weight='bold' color={ THEME.COLORS.PURPLE } />
+            </Pressable>
 
-              <Text style={styles.number}> { quantity } </Text>
+            <Text style={styles.number}> { quantity } </Text>
 
-              <Pressable onPress={() => setQuantity(prevState => prevState += 1)}>
-                <Plus size={18} weight='bold' color={ THEME.COLORS.PURPLE } />
-              </Pressable>
-            </View>
-
-            <Pressable onPress={() => handleRemoveCoffeeOfTheCart(coffee.id)} style={styles.trash}>
-              <Trash size={20} color={THEME.COLORS.PURPLE} />
+            <Pressable onPress={() => {
+              setQuantity(prevState => prevState += 1)
+              handleUpdatedCoffeeOfTheCart(coffee.id, coffee.quantity + 1);
+            }}>
+              <Plus size={18} weight='bold' color={ THEME.COLORS.PURPLE } />
             </Pressable>
           </View>
-        </View>
 
-        <Text style={styles.price}>
-          R$ { coffee.price.toFixed(2) }
-        </Text>
-      </Animated.View>
-    // </GestureDetector>
+          <Pressable onPress={() => handleRemoveCoffeeOfTheCart(coffee.id)} style={styles.trash}>
+            <Trash size={20} color={THEME.COLORS.PURPLE} />
+          </Pressable>
+        </View>
+      </View>
+
+      <Text style={styles.price}>
+        R$ { coffee.price.toFixed(2) }
+      </Text>
+    </Animated.View>
   )
 }
